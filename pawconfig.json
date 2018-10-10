@@ -5,5 +5,5 @@
   "appRootUrl": "/",
   "serviceWorker": false,
   "serverSideRender": false,
-  "singlePageApplication": true
+  "singlePageApplication": false
 }

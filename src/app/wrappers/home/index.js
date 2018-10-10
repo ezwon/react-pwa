@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {createStructuredSelector} from "reselect";
 import {Layout, Row, Col} from "antd";
-// import {Layout, Row, Col} from "antd";
 import { Link } from 'react-router-dom';
 import {
   StyledWrapper_IstackAccountsAdmin,
@@ -11,14 +10,14 @@ import {
 } from "./styles";
 import {landinglogos} from "./constants";
 
-// import {selectIsValidToken} from "@common/auth0/session/selectors";
+import {selectIsValidToken} from "@common/auth0/session/selectors";
 
-// const {Content} = Layout;
-
-// import Auth0 from "@common/auth0";
+import Auth0 from "@common/auth0";
+import Editor from "@modules/common/components/Editor";
 import ScreenShot from "@resources/images/landing/screen.png";
 
 import config from "@config";
+
 
 class HomePage extends Component {
   constructor(props) {
@@ -26,13 +25,15 @@ class HomePage extends Component {
   }
 
   handleLogin = () => {
-    // Auth0.authorize({
-    //   auth_database: config.AUTH0_DATABASE,
-    //   brand: config.APP_BRAND,
-    // });
+    Auth0.authorize({
+      auth_database: config.AUTH0_DATABASE,
+      brand: config.APP_BRAND,
+    });
   };
 
   render() {
+
+
     const {isValidToken} = this.props;
     return (
       <StyledWrapper_IstackAccountsAdmin>
@@ -44,6 +45,7 @@ class HomePage extends Component {
                 <h1>
                   Billing, invoices <br/>and access <br/>all in one place
                 </h1>
+
                 <p>
                   Use a single set of login credentials to access <br/>all of our
                   systems. Easy Won!
@@ -51,34 +53,34 @@ class HomePage extends Component {
                 {config.NODE_ENV !== "production" && (
                   <div className="istack-network_styled-div-button-wrapper">
                     <Row type='flex' justify='start' align='top' gutter={24}>
-                      {/*<Col xs={12} sm={12} md={12} lg={12}>*/}
-                        {/*<Link to="/shop">*/}
-                          {/*<BaseAntButton type="outline" className="buttonBase">*/}
-                            {/*Shop*/}
-                          {/*</BaseAntButton>*/}
-                        {/*</Link>*/}
-                      {/*</Col>*/}
-                      {/*{isValidToken ?*/}
-                        {/*(*/}
-                          {/*<Col xs={12} sm={12} md={12} lg={12}>*/}
-                            {/*<Link to="/account/profile">*/}
-                              {/*<BaseAntButton type="blue" className="buttonBase">*/}
-                                {/*My Account*/}
-                              {/*</BaseAntButton>*/}
-                            {/*</Link>*/}
-                          {/*</Col>*/}
-                        {/*) : (*/}
-                          {/*<Col xs={12} sm={12} md={12} lg={12}>*/}
-                            {/*<BaseAntButton*/}
-                              {/*type="blue"*/}
-                              {/*className="buttonBase"*/}
-                              {/*onClick={this.handleLogin}*/}
-                            {/*>*/}
-                              {/*Login*/}
-                            {/*</BaseAntButton>*/}
-                          {/*</Col>*/}
-                        {/*)*/}
-                      {/*}*/}
+                      <Col xs={12} sm={12} md={12} lg={12}>
+                        <Link to="/shop">
+                          <BaseAntButton type="outline" className="buttonBase">
+                            Shop
+                          </BaseAntButton>
+                        </Link>
+                      </Col>
+                      {isValidToken ?
+                        (
+                          <Col xs={12} sm={12} md={12} lg={12}>
+                            <Link to="/account/profile">
+                              <BaseAntButton type="blue" className="buttonBase">
+                                My Account
+                              </BaseAntButton>
+                            </Link>
+                          </Col>
+                        ) : (
+                          <Col xs={12} sm={12} md={12} lg={12}>
+                            <BaseAntButton
+                              type="blue"
+                              className="buttonBase"
+                              onClick={this.handleLogin}
+                            >
+                              Login
+                            </BaseAntButton>
+                          </Col>
+                        )
+                      }
                     </Row>
                   </div>
                 )}
@@ -114,14 +116,15 @@ class HomePage extends Component {
                 </div>
                  <p>...with more to come <span onClick={this.handleLogin} style={{color: "#898585"}}>soon</span></p>
                 {/*<p>...with more to come soon</p>*/}
-                {/*<Link to="/shop">*/}
-                  {/*<BaseAntButton type="outline" className="buttonBase">*/}
-                    {/*Get Started*/}
-                  {/*</BaseAntButton>*/}
-                {/*</Link>*/}
+                <Link to="/shop">
+                  <BaseAntButton type="outline" className="buttonBase">
+                    Get Started
+                  </BaseAntButton>
+                </Link>
               </div>
             </Col>
           </Row>
+          <Editor/>
           <div className="styled-div_istack-network_footer-text">
             <p>© <strong>2018 iStack Network</strong>. All rights reserved.</p>
           </div>

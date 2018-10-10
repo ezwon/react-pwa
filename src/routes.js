@@ -1,8 +1,11 @@
+
 import HomeRoutes from './pages/home';
+import AuthRoutes from './pages/auth';
 import AppLogo from '@resources/images/logo/iStackNetworkLogo.png';
 
 const appRoutes = [
   ...HomeRoutes,
+  ...AuthRoutes,
 ];
 
 export default class Routes {

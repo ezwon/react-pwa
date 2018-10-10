@@ -1,11 +1,11 @@
-import superagent from "superagent";
 import feathers from "@feathersjs/feathers";
 import rest from "@feathersjs/rest-client";
-
+const axios = require('axios');
 import config from "@config";
 
 const host = config.API_URL;
-export const app = feathers().configure(rest(host).superagent(superagent));
+
+export const app = feathers().configure(rest(host).axios(axios));
 //.configure(feathers.authentication({ storage: window.localStorage })); // use if implementing Feathers Authentication
 
 const addHeader = hook => {

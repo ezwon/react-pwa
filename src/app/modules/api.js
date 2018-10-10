@@ -15,7 +15,6 @@ import {enumMessageType} from "@common/enums";
 
 import config from "@config";
 
-
 export function* setIsLoading(value) {
   yield put(isLoading(value));
 }
