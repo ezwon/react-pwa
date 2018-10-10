@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Sign In with Auth0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+  body,
+  html {
+    height: 100%;
+    background-color: #fff;
+  }
+
+  /* Theme per branch */
+
+  /* Istack Network */
+
+  .brand-logo{
+    display: none;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  .brand-logo.show{
+    display: block !important;
+  }
+
+  #istack-network .bg-panel-image-container {
+    background-image: linear-gradient( 15deg, rgb(151, 129, 245) 0%, rgb(118, 159, 247) 100%);
+    box-shadow: none;
+  }
+
+  #istack-network .bg-panel-image-container:after {
+    background-image: linear-gradient( 35deg, rgb(151, 129, 245) 0%, rgb(118, 159, 247) 100%);
+    box-shadow: none;
+  }
+
+  #istack-network #btn-login,
+  #istack-network #btn-change-password {
+    background-image: linear-gradient( 60deg, rgb(151, 129, 245) 0%, rgb(118, 159, 247) 100%);
+    box-shadow: 0px 18px 46px 0px rgba(132, 166, 245, 0.72);
+  }
+
+  #istack-network .form-control:focus,
+  #istack-network .form-control:hover {
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #6590fa;
+  }
+
+  /* FunnelFlux */
+
+  #funnel-flux .bg-panel-image-container {
+    background-image: linear-gradient( 60deg, rgb(255, 140, 105) 0%, rgb(255, 116, 98) 100%);
+    box-shadow: none;
+  }
+
+  #funnel-flux .bg-panel-image-container:after {
+    background-image: linear-gradient( 75deg, rgb(255, 140, 105) 0%, rgb(255, 116, 98) 100%);
+  }
+
+  #funnel-flux #btn-login,
+  #funnel-flux #btn-change-password {
+    background-image: linear-gradient( 60deg, rgb(255, 139, 105) 0%, rgb(255, 118, 98) 100%);
+    box-shadow: 0px 18px 46px 0px rgba(249, 135, 105, 0.3);
+  }
+
+  #funnel-flux .form-control:focus,
+  #funnel-flux .form-control:hover {
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #ff7963;
+  }
+
+  /* AWC */
+
+  #awc .bg-panel-image-container {
+    background-image: linear-gradient( 55deg, rgb(48, 202, 205) 0%, rgb(51, 35, 117) 100%);
+    box-shadow: none;
+  }
+
+  #awc .bg-panel-image-container:after {
+    background-image: linear-gradient( 75deg, rgb(48, 202, 205) 0%, rgb(51, 35, 117) 100%);
+    box-shadow: none;
+  }
+
+  #awc #btn-login,
+  #awc #btn-change-password {
+    background-image: linear-gradient( 60deg, rgb(49, 173, 190) 0%, rgb(50, 80, 141) 100%);
+    box-shadow: 0px 18px 38px 0px rgba(49, 159, 183, 0.41);
+  }
+
+  #awc .form-control:focus,
+  #awc .form-control:hover {
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #324587;
+  }
+
+  /* Training */
+
+  #istack-training .bg-panel-image-container {
+    background-image: linear-gradient( 55deg, rgb(255,243,59) 0%,rgb(237,104,60) 100%);
+    box-shadow: none;
+  }
+
+  #istack-training .bg-panel-image-container:after {
+    background-image: linear-gradient( 75deg, rgb(255,243,59) 0%,rgb(237,104,60) 100%);
+    box-shadow: none;
+  }
+
+  #istack-training #btn-login,
+  #istack-training #btn-change-password {
+    background-image: linear-gradient( 60deg, rgb(46,49,146) 0%,rgb(0,174,239) 100%);
+    box-shadow: 0px 18px 38px 0px rgba(0,174,239, 0.41);
+  }
+
+  #istack-training .form-control:focus,
+  #istack-training .form-control:hover {
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #324587;
+  }
+
+  /* STM */
+
+  #stm .bg-panel-image-container {
+    background-image: linear-gradient( 60deg, rgb(207, 46, 73) 0%, rgb(228, 94, 94) 100%);
+    box-shadow: none;
+  }
+
+  #stm .bg-panel-image-container:after {
+    background-image: linear-gradient( 75deg, rgb(207, 46, 73) 0%, rgb(228, 94, 94) 100%);
+  }
+
+  #stm #btn-login,
+  #stm #btn-change-password {
+    background-image: linear-gradient( 60deg, rgb(212, 57, 77) 0%, rgb(221, 78, 87) 100%);
+    box-shadow: 0px 18px 46px 0px rgba(220, 75, 86, 0.3);
+  }
+
+  #stm .form-control:focus,
+  #stm .form-control:hover {
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #dc4b56;
+  }
+
+
+  /* End Theme per branch */
+
+  /* Containers */
+
+  .login-container {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .login-box {
+    padding: 100px 20px 60px;
+    width: 544px;
+    height: 626px;
+    z-index: 12;
+  }
+
+  .bg-panel-container {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 200px;
+    padding: 0 0 200px;
+    min-height: 900px;
+  }
+
+  .bg-panel {
+    background: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    border-radius: 5px;
+  }
+
+  .bg-panel-second {
+    top: 28px;
+    z-index: 11;
+    width: 510px;
+    height: 613px;
+  }
+
+  .bg-panel-third {
+    top: 45px;
+    z-index: 10;
+    width: 482px;
+    height: 613px;
+  }
+
+  .bg-panel-image-container {
+    background-image: linear-gradient( 15deg, rgb(151, 129, 245) 0%, rgb(118, 159, 247) 100%);
+    display: block;
+    padding: 30px 30px 0;
+    position: relative;
+    min-height: 450px;
+    padding: 28px 30px;
+  }
+
+  .bg-panel-image-container:before {
+    background-image: url(https://image.ibb.co/fT4ULH/vector.png);
+    content: ' ';
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    height: 500px;
+    z-index: 3;
+    width: 100%;
+    opacity: 0.3;
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+  }
+
+  .bg-panel-image-container:after {
+    bottom: 0;
+    transform: skewY(-8deg);
+    transform-origin: 100%;
+    background-image: linear-gradient( 35deg, rgb(151, 129, 245) 0%, rgb(118, 159, 247) 100%);
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+  }
+
+  .bg-panel-image-container img {
+    display: none;
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    opacity: 0.5;
+  }
+
+  .panel-box-shadow {
+    box-shadow: 0px 10px 103px 0px rgba(78, 78, 78, 0.12);
+  }
+
+  .login-header {
+    text-align: center;
+  }
+
+  .login-header img {
+    height: 100px;
+  }
+
+  #error-message {
+    display: none;
+    color: #e67373;
+    background-color: #fee5e5;
+    border-color: #e67373;
+  }
+
+  /* Buttons */
+
+  #btn-login,
+  #btn-change-password {
+    background-image: linear-gradient( 23deg, rgb(151, 129, 245) 0%, rgb(118, 159, 247) 100%);
+    box-shadow: 0px 18px 46px 0px rgba(132, 166, 245, 0.72);
+    width: 149px;
+    height: 52px;
+    z-index: 31;
+    border: none;
+    margin: 40px auto 70px;
+  }
+
+  #btn-login:focus,
+  #btn-change-password:focus {
+    outline: none;
+  }
+
+  #btn-login:hover,
+  #btn-change-password:hover {
+    opacity: 0.9;
+  }
+
+  .forgot-password {
+    display: block;
+    text-align: right;
+    color: #94a5c0;
+    cursor: pointer;
+  }
+
+  .sign-up {
+    display: block;
+    text-align: center;
+    color: #94a5c0;
+  }
+
+  /* Form */
+
+  form {
+    width: 285px;
+    margin: auto;
+  }
+
+  h1 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    z-index: 2;
+    top: 100px;
+    font-size: 32px;
+    margin: 0;
+  }
+
+  h5 {
+    font-size: 16px;
+    color: #94a5c0;
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    color: #2e506a;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  h4 {
+    color: #4579a0;
+  }
+
+  p {
+    color: #7989a2;
+  }
+
+  .form-group {
+    position: relative;
+    margin: 0 0 10px;
+  }
+
+  .form-control {
+    outline: none;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #94a5c0;
+    border-radius: 0;
+    margin: 35px 0 0;
+    padding: 15px 40px;
+  }
+
+  .form-control::placeholder {
+    color: rgba(148, 165, 192, 0.612);
+  }
+
+  .form-control:focus,
+  .form-control:hover {
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #6590fa;
+  }
+
+  .form-control-prefix {
+    position: absolute;
+    top: 8px;
+    left: 14px;
+  }
+
+  #password-form {
+    margin: 50px auto 0;
+    text-align: center;
+  }
+
+  .glyphicon {
+    color: #94a5c0;
+  }
+
+  .back {
+    font-size: 15px;
+    cursor: pointer;
+    color: #6590fa;
+    display: block;
+    text-align: center;
+    padding: 0 0 16px;
+  }
+
+  .back .glyphicon {
+    color: #6590fa;
+  }
+
+  #reset-password-message-success {
+    padding: 0 0 60px;
+  }
+
+  #reset-password-message-success img {
+    padding: 0 0 20px;
+    width: 80px;
+  }
+
+  #logos {
+    position: relative;
+    bottom: -450px;
+    margin: auto;
+    width: 250px;
+    display: block;
+  }
+
+  @media only screen and (max-width: 600px) {
+    form {
+      width: 250px;
+    }
+    #login-form {
+      padding: 10px 0 0;
+    }
+    #logos {
+      bottom: -400px;
+    }
+    .login-box {
+      max-width: 340px;
+      max-height: 566px;
+      padding: 50px 20px;
+    }
+    .bg-panel-second {
+      width: 300px;
+      max-height: 556px;
+    }
+    .bg-panel-third {
+      width: 260px;
+      max-height: 556px;
+    }
+  }
+</style>
+
+<body>
+<div class="login-container" id="">
+  <div class="bg-panel-image-container">
+    <img src="http://public.istackmanila.com/istack-network/assets/images/auth0-login/background.png" />
+  </div>
+  <!-- <h1 id="app-welcome"></h1> -->
+  <div class="bg-panel-container">
+    <div class="bg-panel login-box panel-box-shadow">
+      <div class="login-header">
+        <img class="brand-logo istack-training" src="http://public.istackmanila.com/istack-network/assets/images/auth0-login/istack-training.png" />
+        <h3 class="brand-logo istack-training">iStack Training</h3>
+
+        <img class="brand-logo istack-network" src="http://public.istackmanila.com/istack-network/assets/images/auth0-login/istack-network.png" />
+        <h3 class="brand-logo istack-network">iStack Network</h3>
+        <h5>Login to access your account</h5>
+      </div>
+      <div id="error-message" class="alert alert-danger"></div>
+      <form onsubmit="return false;" method="post" id="login-form">
+        <div class="form-group">
+          <span class="glyphicon glyphicon-user form-control-prefix" aria-hidden="true"></span>
+          <input type="email" class="form-control" id="email" placeholder="Username">
+          <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
+        </div>
+        <div class="form-group">
+          <span class="glyphicon glyphicon-lock form-control-prefix" aria-hidden="true"></span>
+          <input type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        <span class="forgot-password">Forgot Password</span>
+        <button type="submit" id="btn-login" class="btn btn-primary btn-block">
+          Log In
+        </button>
+      </form>
+      <form onsubmit="return false;" method="post" id="password-form" style="display: none;">
+        <div class="reset-password-message" style="display: none;">
+          <div id="reset-password-message-success">
+            <img src="http://public.istackmanila.com/istack-network/assets/images/auth0-login/change-pass.png" />
+            <h4></h4>
+          </div>
+        </div>
+        <span class="back">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            Return to Login
+          </span>
+        <div class="reset-password-container">
+          <h4>Reset your Password</h4>
+          <p>Please enter your email address. We will send you an email to reset your password</p>
+          <div class="form-group">
+            <span class="glyphicon glyphicon-envelope form-control-prefix" aria-hidden="true"></span>
+            <input type="email" class="form-control" id="password-email" placeholder="Enter Email" required>
+          </div>
+          <button type="submit" id="btn-change-password" class="btn btn-primary btn-block">
+            Reset Password
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="bg-panel bg-panel-second panel-box-shadow"></div>
+    <div class="bg-panel bg-panel-third panel-box-shadow"></div>
+  </div>
+  <img id="logos" src="http://public.istackmanila.com/istack-network/assets/images/auth0-login/istack-network-branch-logos.png" />
+</div>
+
+<!--[if IE 8]>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ie8/0.2.5/ie8.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+<script src="https://cdn.auth0.com/js/polyfills/1.0/base64.min.js"></script>
+<script src="https://cdn.auth0.com/js/polyfills/1.0/es5-shim.min.js"></script>
+<![endif]-->
+
+<script src="https://cdn.auth0.com/js/polyfills/1.0/object-assign.min.js"></script>
+<script src="https://cdn.auth0.com/js/auth0/9.3.1/auth0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script>
+  $(function () {
+    var stateMap = {
+      config: {},
+      webAuth: null,
+      defaultConnection: 'iStack-Network-Staging',
+      $container: $('.login-container'),
+      fadeDuration: 300
+    };
+
+    // Key bindings
+    var bind = function () {
+      var $container = stateMap.$container;
+      $container.off();
+      $container.on('click', '#btn-login', login);
+      $container.on('click', '#btn-change-password', changePassword);
+      $container.on('click', '.forgot-password', showForgotPasswordPage);
+      $container.on('click', '.back', showLoginPage);
+    };
+
+    // handler functions
+
+    var login = function () {
+      var username = $('#email').val();
+      var password = $('#password').val();
+      $('#btn-login').attr('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> Logging in');
+      stateMap.webAuth.login({
+        realm: stateMap.config.extraParams.auth_database || stateMap.defaultConnection,
+        username: username,
+        password: password,
+        tenant: stateMap.config.auth0Tenant,
+      }, function (err, authResult) {
+        if (err) {
+          console.log("Auth0 Error:", err);
+          displayError(err);
+        }
+      });
+    };
+
+    var changePassword = function () {
+      var email = $('#password-email').val()
+      stateMap.webAuth.changePassword({
+        connection: stateMap.config.extraParams.auth_database || stateMap.defaultConnection,
+        email: email,
+      }, function (err, resp) {
+        if (err) {
+          console.log(err.message);
+        } else {
+          $('.reset-password-container').fadeOut(stateMap.fadeDuration);
+          setTimeout(() => {
+            $('#reset-password-message-success h4').html(resp)
+            $('.reset-password-message').fadeIn(stateMap.fadeDuration);
+          }, 400);
+        }
+      });
+    }
+
+    var showForgotPasswordPage = function () {
+      $('#login-form').fadeOut(stateMap.fadeDuration);
+      $('#error-message').remove();
+      setTimeout(() => {
+        $('.reset-password-container').fadeIn(stateMap.fadeDuration);
+        $('#password-form').fadeIn(stateMap.fadeDuration);
+      }, 400);
+    };
+
+    var showLoginPage = function () {
+      $('#password-form').fadeOut(stateMap.fadeDuration);
+      setTimeout(() => {
+        $('#login-form').fadeIn(stateMap.fadeDuration);
+        $('.reset-password-message').fadeOut(stateMap.fadeDuration);
+      }, 400);
+    };
+
+    var displayError = function (err) {
+      var errorMessage = $('#error-message');
+      errorMessage.html(err.description).css('display', 'block');
+      $('#btn-login').attr('disabled', false).html('Login');
+    }
+
+    // Initialization functions
+    var initAuth0 = function (config) {
+      var params = Object.assign({
+        domain: config.auth0Domain,
+        clientID: config.clientID,
+        redirectUri: config.callbackURL,
+        responseType: config.extraParams.response_type,
+        protocol: config.extraParams.protocol
+      }, config.internalOptions);
+      var webAuth = new auth0.WebAuth(params);
+      stateMap.webAuth = webAuth;
+    };
+
+    var init = function () {
+      var config = JSON.parse(
+        decodeURIComponent(escape(window.atob('@@config@@')))
+      );
+
+      $('#app-title').html(config.dict.signin.title);
+      $('#app-welcome').html('Welcome to ' + config.dict.signin.title);
+      $('title').html('Sign In with ' + config.dict.signin.title);
+      $('.login-container').attr('id', config.extraParams.brand);
+      $('.brand-logo.' + config.extraParams.brand).addClass("show");
+
+      stateMap.config = config;
+      initAuth0(config);
+      bind();
+    };
+
+    init();
+  });
+</script>
+</body>
+
+</html>

@@ -24,7 +24,35 @@
     }
   ],
   "license": "MIT",
+  "moduleAliases": {
+    "@config": "src/config",
+    "@modules": "src/app/modules",
+    "@common": "src/app/common",
+    "@resources": "src/resources",
+    "@ant-components": "src/app/ant-components"
+  },
   "devDependencies": {
-    "@pawjs/pawjs": "^2.1.10"
+    "@feathersjs/feathers": "^3.2.3",
+    "@feathersjs/rest-client": "^1.4.5",
+    "@pawjs/pawjs": "git+https://git@github.com/ezwon/pawjs.git",
+    "@pawjs/redux": "^2.1.6",
+    "antd": "^3.9.3",
+    "auth0-js": "^9.8.0",
+    "axios": "^0.18.0",
+    "immutable": "^3.8.2",
+    "jsonwebtoken": "^8.3.0",
+    "localStorage": "^1.0.3",
+    "prop-types": "^15.6.2",
+    "react-redux": "^5.0.7",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.0.0",
+    "redux-actions": "^2.6.1",
+    "redux-saga": "^0.16.2",
+    "reselect": "^4.0.0",
+    "styled-components": "^3.4.9",
+    "styled-props": "^1.1.2"
+  },
+  "dependencies": {
+    "babel-plugin-import": "^1.9.1"
   }
 }

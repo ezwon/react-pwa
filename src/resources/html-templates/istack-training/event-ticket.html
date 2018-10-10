@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ticket</title>
+  <style>
+    html {
+      /* zoom: 0.55; */
+      color: #39475D;
+      font-family: sans-serif;
+    }
+
+    *{
+      box-sizing: border-box;
+    }
+
+    .clearfix:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .logo-img{
+      background: url(https://storage.googleapis.com/istack-network/generic-uploads/ry8C7WNNQ.svg);
+      width: 212px;
+      background-repeat: no-repeat;
+      height: 50px;
+    }
+
+    h2{
+      color: red;
+    }
+
+    .ticket-group{
+      border: 2px solid #000;
+    }
+
+    .ticket-logo{
+      height: 80px;
+      width: 300px;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      display: block;
+    }
+
+    .ticket-graphics{
+      height: 400px;
+      top: 0;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      display: block;
+      width: 160px;
+    }
+    .purchase_details span{
+      display: inline-block;
+      margin-bottom: 5px;
+      line-height: 22px;
+      font-size: 18px;
+    }
+    .purchase_details span.fw{
+      width: 400px;
+    }
+    .purchase_details{
+      background: #fff;
+      padding: 10px;
+      margin: 10px 0;
+      border-bottom: 2px solid #000;
+    }
+    .tickets-wrapper{
+      width: 80%;
+    }
+
+    .ticket{
+      background: #fff;
+      width: 800px;
+      margin: 10px 0 10px 50px;
+      border: 2px solid #D0D2DF;
+    }
+
+    .ticket h4{
+      font-size: 16px;
+      margin: 0;
+    }
+    .ticket p{
+      font-size: 14px;
+      line-height: 20px;
+      margin-top: 5px;
+      margin-bottom: 0;
+    }
+    .ticket .col-center .logo td{
+      border-right: 0;
+    }
+    .ticket table{
+      border-spacing: 0;
+    }
+    .ticket table td{
+      vertical-align: top;
+    }
+    .ticket .col-center td{
+      padding: 10px 20px;
+      border-bottom: 1px solid #D0D2DF;
+      border-right: 1px solid #D0D2DF;
+    }
+    .ticket .col-center td + td{
+      border-right: 0;
+    }
+    .ticket .col-center tr:last-child td{
+      border-bottom: 0;
+    }
+    .ticket .col-left{
+      border-right: 10px solid #D0D2DF;
+    }
+    .ticket .col-right{
+      background: url("https://storage.googleapis.com/istack-network/generic-uploads/B1sjXb4V7.png") no-repeat;
+      background-position: bottom center;
+      vertical-align: top;
+      background-size: cover;
+    }
+    .ticket .col-center .qr{
+      position: relative;
+      padding-right: 130px;
+      padding-bottom: 10px;
+    }
+    .ticket .col-center .qr .img-qr{
+      position: absolute;
+      right: 10px;
+      top: 15px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div>
+  {{#each orders}}
+
+  <div class="ticket-group">
+    <div class="purchase_details">
+      <div>
+        <span class="fw"><strong>Product ID:</strong> {{this.purchase_details.id}}</span>
+        <span><strong>Total Amount Paid:</strong>{{this.purchase_details.currency_symbol}} {{this.purchase_details.total_amount}}</span>
+      </div>
+      <div>
+        <span class="fw"><strong>Quantity:</strong> {{this.purchase_details.quantity}}</span>
+        <span><strong>Reference ID:</strong> {{this.purchase_details.reference_id}}</span>
+      </div>
+      <div>
+        <span class="fw"><strong>Status:</strong> {{this.purchase_details.status}}</span>
+      </div>
+    </div>
+
+    <div class="tickets-wrapper">
+      {{#each this.tickets}}
+      <div class="ticket">
+        <table width="800">
+          <tbody>
+            <tr>
+              <td width="15%" class="col-left"></td>
+              <td width="70%">
+                <table width="100%" class="col-center">
+                  <tbody>
+                    <tr class="logo">
+                      <td colspan="2" height="60"><div class="logo-img"></div></td>
+                    </tr>
+                    <tr>
+                      <td width="50%">
+                        <h4>Date</h4>
+                        <p>Wednesday, August 8, 2018 <br>Doors open at 0:00 AM</p>
+                      </td>
+                      <td width="50%">
+                        <h4>Dusit Thani Bangkok</h4>
+                        <p>Dusit Thani Bangkok <br>945 Rama IV Road, Silom, Bangrak, <br>Bangkok 10500</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="50%">
+                        <h4>Issued to</h4>
+                        <p>Louise Bailey</p>
+                      </td>
+                      <td width="50%">
+                        <h4>Order Reference</h4>
+                        <p>APRY2578</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="50%">
+                        <h4>Ticket ID</h4>
+                        <p>09876543211234567890</p>
+                      </td>
+                      <td width="50%" class="qr">
+                        <h4>Ticket Type</h4>
+                        <p>EML Full day Entry + Dinner</p>
+                        <img src="http://place-hold.it/60x60?text=QR" class="img-qr">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td width="15%" class="col-right"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ticket">
+        <table width="800">
+          <tbody>
+            <tr>
+              <td width="15%" class="col-left"></td>
+              <td width="70%">
+                <table width="100%" class="col-center">
+                  <tbody>
+                    <tr class="logo">
+                      <td colspan="2" height="60"><div class="logo-img"></div></td>
+                    </tr>
+                    <tr>
+                      <td width="50%">
+                        <h4>Date</h4>
+                        <p>{{../this.event.date}} <br>Doors open at {{../this.event.time}}</p>
+                      </td>
+                      <td width="50%">
+                        <h4>{{../this.event.location}}</h4>
+                        <p>{{../this.event.address}}</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="50%">
+                        <h4>Issued to</h4>
+                        <p>{{this.first_name}} {{this.last_name}}</p>
+                      </td>
+                      <td width="50%">
+                        <h4>Order Reference</h4>
+                        <p>{{this.sys_gen_reference_id}}</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="50%">
+                        <h4>Ticket ID</h4>
+                        <p>{{this.sys_gen_short_string}}</p>
+                      </td>
+                      <td width="50%" class="qr">
+                        <h4>Ticket Type</h4>
+                        <p>EML Full day Entry + Dinner</p>
+                        <img src="http://place-hold.it/60x60?text=QR" class="img-qr">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td width="15%" class="col-right"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  {{/each}}
+</div>
+
+</body>
+</html>

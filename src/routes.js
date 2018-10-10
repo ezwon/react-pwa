@@ -1,18 +1,47 @@
-import React from "react";
+import HomeRoutes from './pages/home';
+import AppLogo from '@resources/images/logo/iStackNetworkLogo.png';
+
+const appRoutes = [
+  ...HomeRoutes,
+];
+
 export default class Routes {
+  // eslint-disable-next-line
+  apply(router) {
+    router.setPwaSchema({
+      name: 'iStack Network',
+      short_name: 'iStackNetwork',
 
-  apply(routeHandler) {
+      // Possible values ltr(left to right)/rtl(right to left)
+      dir: 'ltr',
 
-    const routes = [
-      {
-        path: "/",
-        exact: true,
-        component: () => <h1>Hello, World!</h1>,
+      // language: Default en-US
+      lang: 'en-US',
+    });
+
+    router.setDefaultSeoSchema({
+      title: 'iStack Network',
+      site_name: 'iStack Network',
+      description: "Billing, Invoices and Access all in one place",
+      image: AppLogo,
+      twitter: {
+        site: '@istack-network',
+        creator: '@istack-network',
       },
-    ];
+      facebook: {
+        admins: [],
+      },
+      meta: [
+        {
+          name: 'theme-color',
+          content: '#f6f6f6',
+        },
+      ],
+    });
 
-    routeHandler.hooks.initRoutes.tapPromise("AppRoutes", async () => {
-      routeHandler.addRoutes(routes);
+    // Adding application routes to application routes
+    router.hooks.initRoutes.tap('AddAppRoutes', () => {
+      router.addRoutes(appRoutes);
     });
   }
 }
