@@ -1,0 +1,55 @@
+import {createAction} from "redux-actions";
+
+import {
+  CUSTOMER_PRODUCTS_GET_REQUEST,
+  CUSTOMER_PRODUCTS_GET_REQUEST_DONE,
+
+  CUSTOMER_PRODUCT_DETAIL_GET_REQUEST,
+  CUSTOMER_PRODUCT_DETAIL_GET_REQUEST_DONE,
+
+  CUSTOMER_TICKET_DETAIL_GET_REQUEST,
+  CUSTOMER_TICKET_DETAIL_GET_REQUEST_DONE,
+
+  CUSTOMER_PRODUCT_UPDATE_CUSTOM_VALUES_REQUEST,
+  CUSTOMER_PRODUCT_UPDATE_CUSTOM_VALUES_REQUEST_DONE,
+
+  CUSTOMER_PRODUCT_CHURN_MESSAGE_REQUEST,
+  CUSTOMER_PRODUCT_CHURN_MESSAGE_REQUEST_DONE,
+
+  CUSTOMER_PRODUCT_DEACTIVATE_SUBSCRIPTION_REQUEST,
+  CUSTOMER_PRODUCT_DEACTIVATE_SUBSCRIPTION_REQUEST_DONE,
+
+  CUSTOMER_PRODUCT_MODIFY_SUBSCRIPTION_REQUEST,
+  CUSTOMER_PRODUCT_MODIFY_SUBSCRIPTION_REQUEST_DONE,
+
+  CUSTOMER_PRODUCT_REACTIVATE_SUBSCRIPTION_REQUEST,
+  CUSTOMER_PRODUCT_REACTIVATE_SUBSCRIPTION_REQUEST_DONE
+} from "./constants";
+
+
+export const customerProductDeactivateSubscriptionRequest = createAction(CUSTOMER_PRODUCT_DEACTIVATE_SUBSCRIPTION_REQUEST);
+export const customerProductDeactivateSubscriptionRequestDone = createAction(CUSTOMER_PRODUCT_DEACTIVATE_SUBSCRIPTION_REQUEST_DONE);
+
+export const customerProductReactivateSubscriptionRequest = createAction(CUSTOMER_PRODUCT_REACTIVATE_SUBSCRIPTION_REQUEST);
+export const customerProductReactivateSubscriptionRequestDone = createAction(CUSTOMER_PRODUCT_REACTIVATE_SUBSCRIPTION_REQUEST_DONE);
+
+export const customerProductModifySubscriptionRequest = createAction(CUSTOMER_PRODUCT_MODIFY_SUBSCRIPTION_REQUEST);
+export const customerProductModifySubscriptionRequestDone = createAction(CUSTOMER_PRODUCT_MODIFY_SUBSCRIPTION_REQUEST_DONE);
+
+export const customerProductChurnMessageRequest = createAction(CUSTOMER_PRODUCT_CHURN_MESSAGE_REQUEST);
+export const customerProductChurnMessageRequestDone = createAction(CUSTOMER_PRODUCT_CHURN_MESSAGE_REQUEST_DONE);
+
+export const customerProductsGetRequest = createAction(CUSTOMER_PRODUCTS_GET_REQUEST);
+export const customerProductsGetRequestDone = createAction(CUSTOMER_PRODUCTS_GET_REQUEST_DONE);
+
+export const customerProductDetailGetRequest = createAction(CUSTOMER_PRODUCT_DETAIL_GET_REQUEST);
+export const customerProductDetailGetRequestDone = createAction(CUSTOMER_PRODUCT_DETAIL_GET_REQUEST_DONE);
+
+export const customerTicketDetailGetRequest = createAction(CUSTOMER_TICKET_DETAIL_GET_REQUEST);
+export const customerTicketDetailGetRequestDone = createAction(CUSTOMER_TICKET_DETAIL_GET_REQUEST_DONE);
+
+export const customerProductUpdateCustomValuesRequest = createAction(CUSTOMER_PRODUCT_UPDATE_CUSTOM_VALUES_REQUEST);
+export const customerProductUpdateCustomValuesRequestDone = createAction(CUSTOMER_PRODUCT_UPDATE_CUSTOM_VALUES_REQUEST_DONE);
+
+
+

@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import {message, Row, Col, Icon, Button} from "antd";
 import _ from "lodash";
-import Flux from "../../../../../resources/images/icons/product/funnelflux.svg";
-import Training from "../../../../../resources/images/icons/product/istacktraining.svg";
-import STM from "../../../../../resources/images/icons/product/stm.svg";
-import AWA from "../../../../../resources/images/icons/product/stm.svg";
+import Flux from "@resources/images/icons/product/funnelflux.svg";
+import Training from "@resources/images/icons/product/istacktraining.svg";
+import STM from "@resources/images/icons/product/stm.svg";
+import AWA from "@resources/images/icons/product/stm.svg";
 import {DefaultPaymentWrapper} from "../../styles";
 import config from "@config";
 

@@ -1,8 +1,13 @@
-
+import React from "react";
 import HomeRoutes from './pages/home';
 import AuthRoutes from './pages/auth';
 import CartRoutes from './pages/cart';
 import ShopRoutes from './pages/shop';
+import AdminRoutes from './pages/admin';
+import AccountRoutes from './pages/account';
+
+import Error404 from "@common/error/404";
+
 import AppLogo from '@resources/images/logo/iStackNetworkLogo.png';
 
 const appRoutes = [
@@ -10,6 +15,8 @@ const appRoutes = [
   ...AuthRoutes,
   ...CartRoutes,
   ...ShopRoutes,
+  ...AdminRoutes,
+  ...AccountRoutes,
 ];
 
 export default class Routes {
@@ -48,6 +55,7 @@ export default class Routes {
 
     // Adding application routes to application routes
     router.hooks.initRoutes.tap('AddAppRoutes', () => {
+      router.set404Component(Error404);
       router.addRoutes(appRoutes);
     });
   }

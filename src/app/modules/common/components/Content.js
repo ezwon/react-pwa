@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { color } from "../../../common/styles/helpers-styles";
+import { color } from "@common/styles/helpers-styles";
 
 const Content = styled.div`
   background: ${color.white};

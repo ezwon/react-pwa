@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import Header from "./components/Header";
+import {withSession} from "@modules/session";
+
 import {StyledHeader, StyledContainer, StyledFooter} from "./styles";
 
 import {Layout} from "antd";
@@ -31,4 +33,5 @@ class ShopLayout extends Component {
   }
 }
 
-export default ShopLayout;
+export default withSession(ShopLayout);
+

@@ -2,9 +2,11 @@ import React, {Component} from "react";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {Icon} from "antd";
+import {withRouter} from "react-router-dom";
 
-import {sessionSetRequest} from "@common/auth0/session/actions";
-import Auth0 from "@common/auth0";
+import {sessionSetRequest} from "@modules/session/actions";
+import Auth0 from "@modules/session";
+import config from "@config";
 
 import {Wrapper, Content} from "./styles";
 
@@ -23,15 +25,19 @@ class Auth extends Component {
     }, () => {
       Auth0.parseHash({hash: this.props.location.hash}, (err, authResult) => {
         if (authResult && authResult.accessToken && authResult.idToken) {
-          setTimeout(() => {
-            this.setState({
-              isSuccessful: true,
-              message: "Account Valid! Redirecting to Account Page...",
-            });
+          const user = Object.assign({}, authResult);
 
-            const user = Object.assign({}, authResult);
-            this.props.sessionSetRequest({authResult: user});
-          }, 3000);
+          this.setState({
+            isSuccessful: true,
+            message: "Account Valid! Redirecting to Account Page...",
+          });
+
+          this.props.sessionSetRequest({
+            authResult: user,
+            callback: (user) => {
+              this.props.history.push(config.REDIRECT_URL[user.is_admin ? "DEFAULT_ADMIN" : "DEFAULT_CUSTOMER"]);
+            }
+          });
         } else {
           this.setState({
             message: "Could not validate. Please try to login again.",
@@ -69,4 +75,4 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default withRouter(connect(null, mapDispatchToProps)(Auth));

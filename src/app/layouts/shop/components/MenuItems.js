@@ -1,16 +1,17 @@
 import React, {Component} from "react";
+import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {createStructuredSelector} from "reselect";
 
-import {sessionLogoutRequest} from "@common/auth0/session/actions";
-import {selectSessionProfile, selectIsValidToken} from "@common/auth0/session/selectors";
+import {sessionLogoutRequest} from "@modules/session/actions";
+import {selectSessionProfile, selectIsValidToken} from "@modules/session/selectors";
 
 import AntMenu from "@ant-components/Menu/index";
 import {StyledMenuItems, StyledAvatar, LoginButton} from "../styles";
 
 import config from "@config";
-import Auth0 from "@common/auth0";
+import Auth0 from "@modules/session";
 
 class MenuItems extends Component {
   handleLogin = () => {
@@ -22,7 +23,8 @@ class MenuItems extends Component {
   };
 
   handleLogout = () => {
-    this.props.sessionLogoutRequest({redirectUrl: "/shop"});
+    this.props.sessionLogoutRequest();
+    this.props.history.push("/shop");
   };
 
   render() {
@@ -75,6 +77,6 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuItems);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MenuItems));
 
 

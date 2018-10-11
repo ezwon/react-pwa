@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Form } from "antd";
-import { Button } from "../../modules/common/components";
+import { Button } from "@modules/common/components";
 
 const defaultStyle = { margin: "15px 0", display: "block" };
 const SaveButton = ({

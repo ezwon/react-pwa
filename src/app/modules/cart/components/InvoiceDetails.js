@@ -1,6 +1,4 @@
 import React, {Component} from "react";
-import {withRouter} from "react-router-dom";
-
 import {Button, Row, Col} from "antd";
 
 import _ from "lodash";
@@ -10,7 +8,7 @@ import {InvoiceDetailsWrapper, InvoiceItem} from "../styles";
 
 import InvoiceIcon from "@resources/images/icons/cart_icon.svg";
 import config from "@config";
-import Auth0 from "@common/auth0";
+import Auth0 from "@modules/session";
 
 class InvoiceDetails extends Component {
   constructor(props) {
@@ -146,4 +144,4 @@ class InvoiceDetails extends Component {
   }
 }
 
-export default withRouter(InvoiceDetails);
+export default InvoiceDetails;

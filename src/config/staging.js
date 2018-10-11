@@ -113,7 +113,6 @@ export default {
   },
   REDIRECT_URL: {
     DEFAULT_ADMIN: "/admin/dashboard",
-    DEFAULT_STAFF: "/staff/dashboard",
     DEFAULT_CUSTOMER: "/account/profile",
   },
   PUBLIC_URL: ["/", "/auth", "/shop", "/shop/funnelflux", "/shop/training", "/shop/stm", "/shop/awc-asia", "/cart"],

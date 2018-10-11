@@ -7,9 +7,9 @@ import {ReviewOrderWrapper} from "../styles";
 import {
   CheckInput,
   NumberInput,
-} from "../../../ant-components/FormElements";
-import CartError from "../../../../resources/images/icons/cart_error.svg";
-import CartSuccess from "../../../../resources/images/icons/cart_success.svg";
+} from "@ant-components/FormElements";
+import CartError from "@resources/images/icons/cart_error.svg";
+import CartSuccess from "@resources/images/icons/cart_success.svg";
 import {
   Discount,
   PersonalDetails,
@@ -19,7 +19,7 @@ import {
 } from "./review-order";
 
 import config from "@config";
-import Auth0 from "../../../common/auth0";
+import Auth0 from "@modules/session";
 
 const localStorage = require("localStorage");
 

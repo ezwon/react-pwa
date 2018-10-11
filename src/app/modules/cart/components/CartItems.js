@@ -5,9 +5,9 @@ import {Form, Button, Row, Col} from "antd";
 import _ from "lodash";
 import {CartItemsWrapper, CartItem} from "../styles";
 
-import {NumberInput} from "../../../ant-components/FormElements";
+import {NumberInput} from "@ant-components/FormElements";
 
-import CartIcon from "../../../../resources/images/icons/cart_icon.svg";
+import CartIcon from "@resources/images/icons/cart_icon.svg";
 
 
 //TODO: Get all actual products in Cart from Service or LocalStorage

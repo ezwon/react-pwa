@@ -16,7 +16,7 @@ import {
   makeSelectSession,
   makeSelectUser,
   selectIsValidToken,
-} from "@common/auth0/session/selectors";
+} from "@modules/session/selectors";
 
 import {
   makeSelectSteps,
@@ -35,9 +35,9 @@ import {CART_STEPS, STEPS_CONFIG} from "./constants";
 import {
   sessionSetRequest,
   sessionLogoutRequest,
-} from "@common/auth0/session/actions";
+} from "@modules/session/actions";
 
-import Auth0 from "@common/auth0";
+import Auth0 from "@modules/session";
 import {CartCard, Stepper, HeadingText} from "./styles";
 import {
   cartGoToItems,
@@ -84,6 +84,7 @@ class Cart extends Component {
           } else {
             this.setState({showInvalidToken: true});
           }
+
           setTimeout(() => {
             this.props.history.push("/cart");
           }, 2000);

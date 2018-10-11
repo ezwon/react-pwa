@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ticket</title>
+  <style>
+
+    html {
+      /* zoom: 0.55; */
+    }
+    .clearfix:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+{{boom}}
+<ul>
+  {{#each tickets}}
+  <li>{{ this }}</li>
+  <li>{{ this.name }} - {{ this.boom }}</li>
+  {{/each}}
+</ul>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Layout } from "antd";
-import { color, media } from "../../common/styles/helpers-styles";
+import { color, media } from "@common/styles/helpers-styles";
 
 const animateScale = keyframes`
   0% {

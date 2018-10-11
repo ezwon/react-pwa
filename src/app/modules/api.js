@@ -8,8 +8,8 @@ import {
 
 import {message} from "antd";
 
-import {sessionSetDone} from "@common/auth0/session/actions";
-import {initialState as sessionInitialState} from "@common/auth0/session/reducer";
+import {sessionSetDone} from "@modules/session/actions";
+import {initialState as sessionInitialState} from "@modules/session/reducer";
 
 import {enumMessageType} from "@common/enums";
 

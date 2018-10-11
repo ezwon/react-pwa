@@ -1,13 +1,14 @@
 import React, {Component} from "react";
+import {withRouter} from "react-router-dom";
 import _ from "lodash";
 import {Icon, Row, Col, Form, Button} from "antd";
 import config from "@config";
-import {TextInput} from "../../../ant-components/FormElements";
-import ProductStm from "../../../../resources/images/logo/stm-logo-gray.png";
-import ProductFF from "../../../../resources/images/logo/funnelflux-gray.png";
-import ProductTraining from "../../../../resources/images/logo/istack-training-gray.png";
+import {TextInput} from "@ant-components/FormElements";
+import ProductStm from "@resources/images/logo/stm-logo-gray.png";
+import ProductFF from "@resources/images/logo/funnelflux-gray.png";
+import ProductTraining from "@resources/images/logo/istack-training-gray.png";
 
-import Auth0 from "../../../common/auth0";
+import Auth0 from "@modules/session";
 
 import {
   AccountForm,
@@ -101,6 +102,11 @@ class AccountDetails extends Component {
     });
   };
 
+  handleLogOut = () =>{
+    this.props.sessionLogoutRequest();
+    this.props.history.push("/");
+  };
+
   validateToNextPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value) {
@@ -152,7 +158,7 @@ class AccountDetails extends Component {
             </div>
             <Button
               type="secondary"
-              onClick={() => this.props.sessionLogoutRequest()}
+              onClick={this.handleLogOut}
             >
               Logout
             </Button>
@@ -317,4 +323,4 @@ class AccountDetails extends Component {
   }
 }
 
-export default Form.create()(AccountDetails);
+export default withRouter(Form.create()(AccountDetails));

@@ -32,6 +32,8 @@
     "@ant-components": "src/app/ant-components"
   },
   "devDependencies": {
+    "babel-plugin-import": "^1.9.1",
+    "babel-plugin-styled-components": "^1.8.0",
     "@feathersjs/feathers": "^3.2.3",
     "@feathersjs/rest-client": "^1.4.5",
     "@pawjs/pawjs": "git+https://git@github.com/ezwon/pawjs.git",
@@ -45,8 +47,8 @@
     "localStorage": "^1.0.3",
     "prop-types": "^15.6.2",
     "query-string": "^6.2.0",
+    "react-credit-cards": "^0.7.0",
     "react-redux": "^5.0.7",
-    "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^4.0.0",
     "redux-actions": "^2.6.1",
     "redux-saga": "^0.16.2",
@@ -54,7 +56,5 @@
     "styled-components": "^3.4.9",
     "styled-props": "^1.1.2"
   },
-  "dependencies": {
-    "babel-plugin-import": "^1.9.1"
-  }
+  "dependencies": {}
 }

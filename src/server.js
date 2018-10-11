@@ -1,17 +1,26 @@
 import ReduxServer from '@pawjs/redux/server';
 import createSagaMiddleware from 'redux-saga';
 import {rootReducer, rootSaga} from "./app/modules";
-// import {loadStyle} from "@pawjs/pawjs/src/utils/utils";
 
 const appInitialState = {};
 
 export default class Server {
   constructor({addPlugin}) {
 
-    this.sagaMiddleware = createSagaMiddleware();
     const reduxServer = new ReduxServer({addPlugin});
     reduxServer.setReducers(rootReducer);
+
+    this.itrackingMiddleware = ({ getState }) => {
+      return (next) => (action) => {
+        next(action);
+        window && window.istrack && window.istrack("training.reducer", { action, getState });
+      };
+    };
+    reduxServer.addMiddleware(this.itrackingMiddleware);
+
+    this.sagaMiddleware = createSagaMiddleware();
     reduxServer.addMiddleware(this.sagaMiddleware);
+
     addPlugin(reduxServer);
   }
 
@@ -28,10 +37,6 @@ export default class Server {
       .hooks
       .beforeAppRender
       .tapPromise("RunSagaMiddleware", async () => {
-
-        // loadStyle("https://fonts.googleapis.com/css?family=Lato:300,400");
-        // import("@common/styles/global-styles");
-
         return this.sagaMiddleware.run(rootSaga);
       });
   }

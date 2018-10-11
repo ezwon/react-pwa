@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import Icon500 from "../../../resources/images/icons/500.svg";
-// import Button from "../../../app/ant-components/Button";
-// import { Button } from "antd";
+import Icon500 from "@resources/images/icons/500.svg";
 import { NotFoundPage } from "./styles";
 
 export default class Page500 extends Component {
@@ -18,7 +16,6 @@ export default class Page500 extends Component {
         <img src={Icon500} />
         <span className="title">Server error</span>
         <p>Sorry, something went wrong.</p>
-        {/* <Button type="primary"> Go back </Button> */}
       </NotFoundPage>
     );
   }

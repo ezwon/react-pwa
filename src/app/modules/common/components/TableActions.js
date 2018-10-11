@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Icon, Divider, Popconfirm } from "antd";
 
-// import {Popconfirm} from "../../../ant-components";
+// import {Popconfirm} from "@ant-components";
 
 const TableActions = ({ record, description, onDelete, onEdit }) => {
   const handleDelete = () => {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { color } from "../../common/styles/helpers-styles";
+import { color } from "@common/styles/helpers-styles";
 
 export const Wrapper = styled.section`
   padding: 110px 50px;

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Banner } from "../../styles";
-import Vector from "../../../../../resources/images/bannervector.png";
-import FunnelFluxLogo from "../../../../../resources/images/logo/FunnelFlux.svg";
-import STMLogo from "../../../../../resources/images/logo/STM.svg";
-import iStackTrainingLogo from "../../../../../resources/images/logo/iStackTraining.svg";
-import AWCAsia from "../../../../../resources/images/logo/AWC_Asia.png";
+import Vector from "@resources/images/bannervector.png";
+import FunnelFluxLogo from "@resources/images/logo/FunnelFlux.svg";
+import STMLogo from "@resources/images/logo/STM.svg";
+import iStackTrainingLogo from "@resources/images/logo/iStackTraining.svg";
+import AWCAsia from "@resources/images/logo/AWC_Asia.png";
 
 import config from "@config";
 

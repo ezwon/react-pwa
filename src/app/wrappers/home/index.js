@@ -10,13 +10,14 @@ import {
 } from "./styles";
 import {landinglogos} from "./constants";
 
-import {selectIsValidToken} from "@common/auth0/session/selectors";
+import {selectIsValidToken} from "@modules/session/selectors";
 
-import Auth0 from "@common/auth0";
+import Auth0 from "@modules/session";
 import ScreenShot from "@resources/images/landing/screen.png";
 
 import config from "@config";
 
+import Editor from "@modules/common/components/Editor";
 
 class HomePage extends Component {
   constructor(props) {
@@ -31,8 +32,6 @@ class HomePage extends Component {
   };
 
   render() {
-
-
     const {isValidToken} = this.props;
     return (
       <StyledWrapper_IstackAccountsAdmin>
@@ -123,6 +122,7 @@ class HomePage extends Component {
               </div>
             </Col>
           </Row>
+          <Editor handleUpdateContent={(content)=>{console.log("content:",content);}} content="BOOM" />
           <div className="styled-div_istack-network_footer-text">
             <p>© <strong>2018 iStack Network</strong>. All rights reserved.</p>
           </div>
@@ -133,7 +133,7 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  // isValidToken: selectIsValidToken,
+  isValidToken: selectIsValidToken,
 });
 
 

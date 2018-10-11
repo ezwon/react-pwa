@@ -6,7 +6,7 @@ import ExistingCards from "./payments/existing-cards";
 import PayPalButton from "./payments/paypal-button";
 
 import {Form, Row, Col, Button} from "antd";
-import {TextInput} from "../../../ant-components/FormElements";
+import {TextInput} from "@ant-components/FormElements";
 
 import config from "@config";
 

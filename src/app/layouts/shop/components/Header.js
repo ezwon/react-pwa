@@ -9,10 +9,10 @@ import _ from "lodash";
 
 import { shopProductsSetFiltered } from "@modules/shop/actions";
 import { makeProductsList } from "@modules/shop/selectors";
-import { selectIsValidToken, selectSessionProfile } from "@common/auth0/session/selectors";
-import { sessionSetRequest, sessionLogoutRequest } from "@common/auth0/session/actions";
+import { selectIsValidToken, selectSessionProfile } from "@modules/session/selectors";
+import { sessionSetRequest, sessionLogoutRequest } from "@modules/session/actions";
 
-import Auth0 from "@common/auth0";
+import Auth0 from "@modules/session";
 
 import iStackNetworkLogoShort from "@resources/images/logo/iStackNetworkLogo.png";
 import iStackNetworkLogoLong from "@resources/images/logo/iStackNetwork.png";
@@ -80,7 +80,8 @@ class Header extends Component {
   };
 
   handleLogout = () => {
-    this.props.sessionLogoutRequest({ redirectUrl: "/shop" });
+    this.props.sessionLogoutRequest();
+    this.props.history.push("/shop");
   };
 
   handleRedirect = route => {

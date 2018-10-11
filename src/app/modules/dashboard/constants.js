@@ -1,0 +1,1 @@
+export const DASHBOARD_ACTION = "DASHBOARD_ACTION";

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Form } from "antd";
-import {media} from "../../common/styles/helpers-styles";
+import {media} from "@common/styles/helpers-styles";
 
 export const FormItem = styled(Form.Item)`
   margin-bottom: 15px !important;

@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { AntTable } from "../../../ant-components";
-import { getCurrent, getSkip } from "../../../common/helpers/page";
+import { AntTable } from "@ant-components";
+import { getCurrent, getSkip } from "@common/helpers/page";
 
 const Table = ({
   columns,

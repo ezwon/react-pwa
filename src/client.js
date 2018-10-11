@@ -1,15 +1,23 @@
 import ReduxClient from "@pawjs/redux/client";
 import createSagaMiddleware from "redux-saga";
 import {rootReducer, rootSaga} from "./app/modules";
-// import {loadStyle} from "@pawjs/pawjs/src/utils/utils";
 
 const appInitialState = {};
+
 export default class Client {
 
   constructor({addPlugin}) {
 
     const reduxClient = new ReduxClient({addPlugin});
     reduxClient.setReducers(rootReducer);
+
+    this.itrackingMiddleware = ({ getState }) => {
+      return (next) => (action) => {
+        next(action);
+        window && window.istrack && window.istrack("training.reducer", { action, getState });
+      };
+    };
+    reduxClient.addMiddleware(this.itrackingMiddleware);
 
     this.sagaMiddleware = createSagaMiddleware();
     reduxClient.addMiddleware(this.sagaMiddleware);
