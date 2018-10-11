@@ -10,7 +10,7 @@ export const initialState = fromJS({
     nickname:"",
     picture: "",
   },
-  isValidToken: true,
+  isValidToken: false,
 });
 
 export const session = handleActions(

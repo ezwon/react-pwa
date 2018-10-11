@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Menu, Icon } from "antd";
-import Link from "pawjs/src/components/link";
+import { Link } from 'react-router-dom';
 
 const SubMenu = Menu.SubMenu;
 
@@ -26,7 +26,7 @@ class AntMenu extends Component {
                     <Menu.Item key={subval.link}>
                       {subval.icon && <Icon type={subval.icon} />}
                       <span>{subval.title}</span>
-                      <Link to={subval.link} animateSection={section} />
+                      <Link to={subval.link} />
                     </Menu.Item>
                   );
                 })}
@@ -37,7 +37,7 @@ class AntMenu extends Component {
               <Menu.Item key={val.link}>
                 {val.icon && <Icon type={val.icon} />}
                 <span>{val.title}</span>
-                <Link to={val.link} animateSection={section} />
+                <Link to={val.link} />
               </Menu.Item>
             );
           }

@@ -1,17 +1,21 @@
 
 import HomeRoutes from './pages/home';
 import AuthRoutes from './pages/auth';
+import CartRoutes from './pages/cart';
+import ShopRoutes from './pages/shop';
 import AppLogo from '@resources/images/logo/iStackNetworkLogo.png';
 
 const appRoutes = [
   ...HomeRoutes,
   ...AuthRoutes,
+  ...CartRoutes,
+  ...ShopRoutes,
 ];
 
 export default class Routes {
   // eslint-disable-next-line
   apply(router) {
-    router.setPwaSchema({
+    router.setPwaSchema(  {
       name: 'iStack Network',
       short_name: 'iStackNetwork',
 

@@ -1,13 +1,9 @@
 import ReduxClient from "@pawjs/redux/client";
 import createSagaMiddleware from "redux-saga";
 import {rootReducer, rootSaga} from "./app/modules";
-import React, {Component} from "react";
-import {loadStyle} from "@pawjs/pawjs/src/utils/utils";
+// import {loadStyle} from "@pawjs/pawjs/src/utils/utils";
 
 const appInitialState = {};
-
-// ... other imports
-
 export default class Client {
 
   constructor({addPlugin}) {
@@ -17,6 +13,7 @@ export default class Client {
 
     this.sagaMiddleware = createSagaMiddleware();
     reduxClient.addMiddleware(this.sagaMiddleware);
+
     addPlugin(reduxClient);
   }
 
@@ -33,15 +30,6 @@ export default class Client {
       .hooks
       .beforeRender
       .tapPromise("RunSagaMiddleware", async () => {
-
-        loadStyle("https://fonts.googleapis.com/css?family=Lato:300,400").then((res) => {
-          // callbackFunction
-        }).catch(err => {
-          // handle error loading JS situation
-        });
-
-        import("@common/styles/global-styles");
-
         return this.sagaMiddleware.run(rootSaga);
       });
   }

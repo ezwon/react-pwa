@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Upload, Button, Icon } from "antd";
 import { FormItem } from "./styles";
-import config from "pawjs/config";
+import config from "@config";
 
 const ImageUpload = ({
   form,

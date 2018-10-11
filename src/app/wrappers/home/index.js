@@ -13,7 +13,6 @@ import {landinglogos} from "./constants";
 import {selectIsValidToken} from "@common/auth0/session/selectors";
 
 import Auth0 from "@common/auth0";
-import Editor from "@modules/common/components/Editor";
 import ScreenShot from "@resources/images/landing/screen.png";
 
 import config from "@config";
@@ -124,7 +123,6 @@ class HomePage extends Component {
               </div>
             </Col>
           </Row>
-          <Editor/>
           <div className="styled-div_istack-network_footer-text">
             <p>© <strong>2018 iStack Network</strong>. All rights reserved.</p>
           </div>

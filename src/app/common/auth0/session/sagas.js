@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
-import {push} from "react-router-redux";
+// import {push} from "react-router-redux";
 import {put, takeEvery} from "redux-saga/effects";
 
-import config from "@config";
+// import config from "@config";
 
 import {
   SESSION_SET_REQUEST,
@@ -18,7 +18,7 @@ import {get} from "@modules/api";
 
 import {initialState as sessionInitialState} from "./reducer";
 
-let localStorage = require("localStorage");
+const localStorage = require("localStorage");
 
 const serviceName = "user/validate";
 
@@ -37,6 +37,7 @@ function* sessionSetRequest({payload}) {
   let user = {};
 
   session.isValidToken = false;
+
   if (payload && payload.authResult) {
     // authenticated via login, sets tokens
     const {authResult} = payload;
@@ -54,13 +55,13 @@ function* sessionSetRequest({payload}) {
       isValidToken = true;
       session = {user, profile, isValidToken};
 
-      if (payload.redirectUri) {
-        yield put(push(payload.redirectUri));
-      } else if (user.is_admin) {
-        yield put(push(config.REDIRECT_URL.DEFAULT_STAFF));
-      } else {
-        yield put(push(config.REDIRECT_URL.DEFAULT_CUSTOMER));
-      }
+      // if (payload.redirectUri) {
+      //   yield put(push(payload.redirectUri));
+      // } else if (user.is_admin) {
+      //   yield put(push(config.REDIRECT_URL.DEFAULT_STAFF));
+      // } else {
+      //   yield put(push(config.REDIRECT_URL.DEFAULT_CUSTOMER));
+      // }
     }
   } else {
     // checks tokens on localStorage
@@ -104,14 +105,15 @@ function* sessionSetRequest({payload}) {
   yield put(sessionSetDone(session));
 }
 
-function* sessionLogoutRequest({payload}) {
+function* sessionLogoutRequest() {
   clearTokens();
   const session = sessionInitialState.toJS();
   session.isValidToken = false;
   yield put(sessionSetDone(session));
-  if (payload && payload.redirectUrl) {
-    yield put(push(payload.redirectUrl));
-  }
+
+  // if (payload && payload.redirectUrl) {
+  //   yield put(push(payload.redirectUrl));
+  // }
 
 }
 
